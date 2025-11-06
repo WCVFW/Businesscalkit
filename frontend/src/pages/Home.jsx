@@ -1,9 +1,103 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import ComplianceSection from "../pages/ComplianceSection";
 import WhyChooseSection from "../pages/WhyChooseSection"
 
+// Import all header and hero images
+import headerShape2 from "../assets1/img/header-shape-2.svg";
+import logo from "../assets1/img/logo.svg";
+import star1 from "../assets1/img/icons/star-1.svg";
+import heroShape1 from "../assets1/img/hero-shape-1.svg";
+import heroShape2 from "../assets1/img/hero-shape-2.svg";
+
+// Import banner and phone images
+import bannerImg1 from "../assets1/img/banner-img-1.png";
+import phoneImg1 from "../assets1/img/phone-img-1.png";
+
+// Import brand logos
+import brand1 from "../assets1/img/brand-1.svg";
+import brand6 from "../assets1/img/brand-6.svg";
+import brand7 from "../assets1/img/brand-7.svg";
+import brand8 from "../assets1/img/brand-8.svg";
+import brand9 from "../assets1/img/brand-9.svg";
+import brand10 from "../assets1/img/brand-10.svg";
+
+// Import feature icons
+import codeIcon from "../assets1/img/icons/code-icon.svg";
+import caretIcon from "../assets1/img/icons/caret-icon.svg";
+import cloudComputingIcon from "../assets1/img/icons/cloud-computing.svg";
+import qualityAssuranceIcon from "../assets1/img/icons/quality-assurance.svg";
+import securityIcon from "../assets1/img/icons/security.svg";
+
+// Import 3D and shape images
+import shape3d from "../assets1/img/3d-shape.png";
+import springShape from "../assets1/img/spring-shape.png";
+
+// Import process section images
+import humanImg1 from "../assets1/img/human-1.png";
+import vector7 from "../assets1/img/vector-7.svg";
+import homeIcon from "../assets1/img/icons/home.svg";
+import productsIcon from "../assets1/img/icons/products.svg";
+import analyticsIcon from "../assets1/img/icons/analytics.svg";
+import starShape from "../assets1/img/star-shape.svg";
+
+// Import dashboard and analytics images
+import dashboardImg from "../assets1/img/dashboard.png";
+import advancedTrackingIcon from "../assets1/img/icons/advanced-tracking.svg";
+import inDepthIcon from "../assets1/img/icons/in-depth.svg";
+
+// Import phone image and 3D shape
+import phoneImg2 from "../assets1/img/phone-img-2.png";
+import shape3d2 from "../assets1/img/3d-shape-2.png";
+
+// Import pricing shapes
+import trashGroup2 from "../assets1/img/trash-group-2.svg";
+import vector8 from "../assets1/img/vector-8.svg";
+import vector9 from "../assets1/img/vector-9.svg";
+
+// Import customer and testimonial images
+import customersGroup2 from "../assets1/img/customers-group-2.png";
+import avatar5 from "../assets1/img/avatar-5.jpg";
+import avatar6 from "../assets1/img/avatar-6.jpg";
+import quoteIcon from "../assets1/img/icons/qote.svg";
+
+// Import integration icons
+import slackIcon from "../assets1/img/icons/slack.svg";
+import dropboxIcon from "../assets1/img/icons/dropbox.svg";
+import linkedinIcon from "../assets1/img/icons/linkedin.svg";
+import hubspotIcon from "../assets1/img/icons/hubspot.svg";
+import whatsappIcon from "../assets1/img/icons/whatsapp.svg";
+import discordIcon from "../assets1/img/icons/discord.svg";
+import zoomIcon from "../assets1/img/icons/zoom.svg";
+import githubIcon from "../assets1/img/icons/github.svg";
+import mailchimpIcon from "../assets1/img/icons/mailchip.svg";
+import shopifyIcon from "../assets1/img/icons/shopify.svg";
+import googledriveIcon from "../assets1/img/icons/googledrive.svg";
+import notionIcon from "../assets1/img/icons/notion.svg";
+
+// Import blog post images
+import postImg1 from "../assets1/img/post-img-1.jpg";
+import postImg4 from "../assets1/img/post-img-4.jpg";
+import postImg5 from "../assets1/img/post-img-5.jpg";
+import postImg6 from "../assets1/img/post-img-6.jpg";
+
+// Import footer and misc images
+import logo2 from "../assets1/img/logo-2.svg";
+import vector10 from "../assets1/img/vector-10.svg";
+import footerBg2 from "../assets1/img/footer-bg-2.svg";
+import videoBg1 from "../assets1/img/video-bg-1.jpg";
+
 export default function Home() {
+  useEffect(() => {
+    const preloader = document.querySelector('.cs_preloader');
+    if (preloader) {
+      const timer = setTimeout(() => {
+        preloader.style.display = 'none';
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   return (
     <>
       <div className="cs_preloader cs_white_bg">
@@ -16,11 +110,11 @@ export default function Home() {
           <div className="container">
             <div className="cs_main_header_in position-relative">
               <div className="cs_header_shape position-absolute">
-                <img src="assets1/img/header-shape-2.svg" alt="Header shape" />
+                <img src={headerShape2} alt="Header shape" />
               </div>
               <div className="cs_main_header_left position-relative z-1">
                 <a className="cs_site_branding" href="index.html" aria-label="Home page link">
-                  <img src="assets1/img/logo.svg" alt="Logo" />
+                  <img src={logo} alt="Logo" />
                 </a>
               </div>
               <div className="cs_main_header_center">
@@ -77,16 +171,16 @@ export default function Home() {
           </div>
         </div>
       </header>
-      <section className="cs_hero cs_style_2 cs_bg_filed position-relative" data-src="assets1/img/hero-bg-2.jpg">
+      <section className="cs_hero cs_style_2 cs_bg_filed position-relative" data-src={videoBg1}>
         <div className="container">
           <div className="text-center cs_hero_text position-relative">
             <p className="text-center cs_hero_subtitle cs_heading_color cs_heading_font cs_mb_18">
               <span className="cs_theme_color_4">
-                <img src="assets1/img/icons/star-1.svg" alt="Star icon" />
+                <img src={star1} alt="Star icon" />
               </span>
               <span>Welcome To Saaso</span>
               <span className="cs_theme_color_4">
-                <img src="assets1/img/icons/star-1.svg" alt="Star icon" />
+                <img src={star1} alt="Star icon" />
               </span>
             </p>
             <h1 className="cs_hero_title cs_fs_64 cs_mb_20 wow fadeInDown">Our SaaS Solution to Simplify <br /> Your Operations</h1>
@@ -102,11 +196,11 @@ export default function Home() {
               </a>
             </div>
             <div className="cs_hero_shape_1 position-absolute">
-              <img src="assets1/img/hero-shape-1.svg" alt="Shape" />
+              <img src={heroShape1} alt="Shape" />
             </div>
           </div>
           <div className="cs_hero_shape_2 position-absolute">
-            <img src="assets1/img/hero-shape-2.svg" alt="Shape" />
+            <img src={heroShape2} alt="Shape" />
           </div>
         </div>
       </section>
@@ -114,10 +208,10 @@ export default function Home() {
         <div className="container">
           <div className="cs_banner_thumbnail_wrapper">
             <div className="cs_banner_thumbnail">
-              <img src="assets1/img/banner-img-1.png" alt="Banner image" />
+              <img src={bannerImg1} alt="Banner image" />
             </div>
             <div className="cs_banner_thumbnail">
-              <img src="assets1/img/phone-img-1.png" alt="Phone image" />
+              <img src={phoneImg1} alt="Phone image" />
             </div>
           </div>
         </div>
@@ -132,42 +226,42 @@ export default function Home() {
             <div className="cs_slider_in">
               <div className="cs_brands_list">
                 <div className="cs_center">
-                  <img src="assets1/img/brand-6.svg" alt="Brand logo" />
+                  <img src={brand6} alt="Brand logo" />
                 </div>
                 <div className="cs_center">
-                  <img src="assets1/img/brand-7.svg" alt="Brand logo" />
+                  <img src={brand7} alt="Brand logo" />
                 </div>
                 <div className="cs_center">
-                  <img src="assets1/img/brand-8.svg" alt="Brand logo" />
+                  <img src={brand8} alt="Brand logo" />
                 </div>
                 <div className="cs_center">
-                  <img src="assets1/img/brand-9.svg" alt="Brand logo" />
+                  <img src={brand9} alt="Brand logo" />
                 </div>
                 <div className="cs_center">
-                  <img src="assets1/img/brand-10.svg" alt="Brand logo" />
+                  <img src={brand10} alt="Brand logo" />
                 </div>
                 <div className="cs_center">
-                  <img src="assets1/img/brand-1.svg" alt="Brand logo" />
+                  <img src={brand1} alt="Brand logo" />
                 </div>
               </div>
               <div className="cs_brands_list">
                 <div className="cs_center">
-                  <img src="assets1/img/brand-6.svg" alt="Brand logo" />
+                  <img src={brand6} alt="Brand logo" />
                 </div>
                 <div className="cs_center">
-                  <img src="assets1/img/brand-7.svg" alt="Brand logo" />
+                  <img src={brand7} alt="Brand logo" />
                 </div>
                 <div className="cs_center">
-                  <img src="assets1/img/brand-8.svg" alt="Brand logo" />
+                  <img src={brand8} alt="Brand logo" />
                 </div>
                 <div className="cs_center">
-                  <img src="assets1/img/brand-9.svg" alt="Brand logo" />
+                  <img src={brand9} alt="Brand logo" />
                 </div>
                 <div className="cs_center">
-                  <img src="assets1/img/brand-10.svg" alt="Brand logo" />
+                  <img src={brand10} alt="Brand logo" />
                 </div>
                 <div className="cs_center">
-                  <img src="assets1/img/brand-1.svg" alt="Brand logo" />
+                  <img src={brand1} alt="Brand logo" />
                 </div>
               </div>
             </div>
@@ -179,9 +273,9 @@ export default function Home() {
         <div className="container">
           <div className="text-center cs_section_heading cs_style_1 cs_mb_47 cs_center_column position-relative z-1">
             <div className="cs_section_subtitle cs_fs_18 cs_heading_color cs_mb_22">
-              <img src="assets1/img/icons/star-1.svg" alt="Star icon" />
+              <img src={star1} alt="Star icon" />
               <span>Awesome Feature</span>
-              <img src="assets1/img/icons/star-1.svg" alt="Star icon" />
+              <img src={star1} alt="Star icon" />
             </div>
             <h2 className="mb-0 cs_section_title cs_fs_48 cs_semibold wow fadeInUp">Powerful Features to Elevate <br /> Your Workflow</h2>
             <div className="cs_features_items_wrapper position-relative z-1">
@@ -194,26 +288,26 @@ export default function Home() {
               </div>
               <div className="cs_feature_item cs_white_bg cs_radius_20">
                 <span className="cs_feature_icon cs_center cs_radius_12 cs_mb_15">
-                  <img src="assets1/img/icons/code-icon.svg" alt="Coding icon" />
+                  <img src={codeIcon} alt="Coding icon" />
                 </span>
                 <h3 className="cs_fs_24 cs_semibold cs_mb_6">
                   <a href="service-details.html" aria-label="Service details link">Software Development</a>
                 </h3>
                 <ul className="cs_features_list cs_mp_0">
                   <li>
-                    <img src="assets1/img/icons/caret-icon.svg" alt="Caret icon" />
+                    <img src={caretIcon} alt="Caret icon" />
                     <span>Security</span>
                   </li>
                   <li>
-                    <img src="assets1/img/icons/caret-icon.svg" alt="Caret icon" />
+                    <img src={caretIcon} alt="Caret icon" />
                     <span>Agile Methodologies</span>
                   </li>
                   <li>
-                    <img src="assets1/img/icons/caret-icon.svg" alt="Caret icon" />
+                    <img src={caretIcon} alt="Caret icon" />
                     <span>Clear Requirements</span>
                   </li>
                   <li>
-                    <img src="assets1/img/icons/caret-icon.svg" alt="Caret icon" />
+                    <img src={caretIcon} alt="Caret icon" />
                     <span>Feedback &  Improvement</span>
                   </li>
                 </ul>
@@ -224,26 +318,26 @@ export default function Home() {
               </div>
               <div className="cs_feature_item cs_white_bg cs_radius_20">
                 <span className="cs_feature_icon cs_center cs_bg_1 cs_radius_12 cs_mb_15">
-                  <img src="assets1/img/icons/cloud-computing.svg" alt="Cloud computing icon" />
+                  <img src={cloudComputingIcon} alt="Cloud computing icon" />
                 </span>
                 <h3 className="cs_fs_24 cs_semibold cs_mb_6">
                   <a href="service-details.html" aria-label="Service details link">Cloud Computing Solutions</a>
                 </h3>
                 <ul className="cs_features_list cs_mp_0">
                   <li>
-                    <img src="assets1/img/icons/caret-icon.svg" alt="Caret icon" />
+                    <img src={caretIcon} alt="Caret icon" />
                     <span>Security</span>
                   </li>
                   <li>
-                    <img src="assets1/img/icons/caret-icon.svg" alt="Caret icon" />
+                    <img src={caretIcon} alt="Caret icon" />
                     <span>Agile Methodologies</span>
                   </li>
                   <li>
-                    <img src="assets1/img/icons/caret-icon.svg" alt="Caret icon" />
+                    <img src={caretIcon} alt="Caret icon" />
                     <span>Clear Requirements</span>
                   </li>
                   <li>
-                    <img src="assets1/img/icons/caret-icon.svg" alt="Caret icon" />
+                    <img src={caretIcon} alt="Caret icon" />
                     <span>Feedback &  Improvement</span>
                   </li>
                 </ul>
@@ -254,26 +348,26 @@ export default function Home() {
               </div>
               <div className="cs_feature_item cs_white_bg cs_radius_20">
                 <span className="cs_feature_icon cs_bg_2 cs_center cs_radius_12 cs_mb_15">
-                  <img src="assets1/img/icons/quality-assurance.svg" alt="Quality assurance icon" />
+                  <img src={qualityAssuranceIcon} alt="Quality assurance icon" />
                 </span>
                 <h3 className="cs_fs_24 cs_semibold cs_mb_6">
                   <a href="service-details.html" aria-label="Service details link">Quality Assurance</a>
                 </h3>
                 <ul className="cs_features_list cs_mp_0">
                   <li>
-                    <img src="assets1/img/icons/caret-icon.svg" alt="Caret icon" />
+                    <img src={caretIcon} alt="Caret icon" />
                     <span>Security</span>
                   </li>
                   <li>
-                    <img src="assets1/img/icons/caret-icon.svg" alt="Caret icon" />
+                    <img src={caretIcon} alt="Caret icon" />
                     <span>Agile Methodologies</span>
                   </li>
                   <li>
-                    <img src="assets1/img/icons/caret-icon.svg" alt="Caret icon" />
+                    <img src={caretIcon} alt="Caret icon" />
                     <span>Clear Requirements</span>
                   </li>
                   <li>
-                    <img src="assets1/img/icons/caret-icon.svg" alt="Caret icon" />
+                    <img src={caretIcon} alt="Caret icon" />
                     <span>Feedback &  Improvement</span>
                   </li>
                 </ul>
@@ -284,26 +378,26 @@ export default function Home() {
               </div>
               <div className="cs_feature_item cs_white_bg cs_radius_20">
                 <span className="cs_feature_icon cs_bg_3 cs_center cs_radius_12 cs_mb_15">
-                  <img src="assets1/img/icons/security.svg" alt="Cybersecurity security icon" />
+                  <img src={securityIcon} alt="Cybersecurity security icon" />
                 </span>
                 <h3 className="cs_fs_24 cs_semibold cs_mb_6">
                   <a href="service-details.html" aria-label="Service details link">Cybersecurity Services</a>
                 </h3>
                 <ul className="cs_features_list cs_mp_0">
                   <li>
-                    <img src="assets1/img/icons/caret-icon.svg" alt="Caret icon" />
+                    <img src={caretIcon} alt="Caret icon" />
                     <span>Security</span>
                   </li>
                   <li>
-                    <img src="assets1/img/icons/caret-icon.svg" alt="Caret icon" />
+                    <img src={caretIcon} alt="Caret icon" />
                     <span>Agile Methodologies</span>
                   </li>
                   <li>
-                    <img src="assets1/img/icons/caret-icon.svg" alt="Caret icon" />
+                    <img src={caretIcon} alt="Caret icon" />
                     <span>Clear Requirements</span>
                   </li>
                   <li>
-                    <img src="assets1/img/icons/caret-icon.svg" alt="Caret icon" />
+                    <img src={caretIcon} alt="Caret icon" />
                     <span>Feedback &  Improvement</span>
                   </li>
                 </ul>
@@ -315,10 +409,10 @@ export default function Home() {
             </div>
           </div>
           <div className="cs_feature_shape_1 position-absolute">
-            <img src="assets1/img/3d-shape.png" alt="Vector shape" />
+            <img src={shape3d} alt="Vector shape" />
           </div>
           <div className="cs_feature_shape_2 position-absolute">
-            <img src="assets1/img/spring-shape.png" alt="Spring shape" />
+            <img src={springShape} alt="Spring shape" />
           </div>
           <div className="cs_height_120 cs_height_lg_80"></div>
         </div>
@@ -331,18 +425,18 @@ export default function Home() {
               <div className="cs_workink_process_heading cs_center_column position-relative">
                 <div className="cs_section_heading cs_style_1 cs_mb_11 z-1">
                   <div className="cs_section_subtitle cs_fs_18 cs_heading_color cs_mb_22">
-                    <img src="assets1/img/icons/star-1.svg" alt="Star icon" />
+                    <img src={star1} alt="Star icon" />
                     <span>How It work</span>
-                    <img src="assets1/img/icons/star-1.svg" alt="Star icon" />
+                    <img src={star1} alt="Star icon" />
                   </div>
                   <h2 className="cs_section_title cs_fs_48 cs_semibold wow fadeInUp">Let's Utilize Optimum In Three Easy Actions.</h2>
                   <p className="cs_card_desc cs_mb_22">All the generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
                 </div>
                 <div className="cs_process_thumbnail z-1">
-                  <img src="assets1/img/human-1.png" alt="Human image" />
+                  <img src={humanImg1} alt="Human image" />
                 </div>
                 <div className="bottom-0 cs_vector_shape position-absolute start-0">
-                  <img src="assets1/img/vector-7.svg" alt="Vector shape" />
+                  <img src={vector7} alt="Vector shape" />
                 </div>
               </div>
             </div>
@@ -350,21 +444,21 @@ export default function Home() {
               <div className="cs_iconbox_wrapper_2">
                 <div className="cs_iconbox cs_style_2">
                   <span className="cs_iconbox_icon cs_center cs_accent_bg cs_mb_18">
-                    <img src="assets1/img/icons/home.svg" alt="Browser icon" />
+                    <img src={homeIcon} alt="Browser icon" />
                   </span>
                   <h3 className="cs_fs_24 cs_semibold cs_mb_4">Create your account</h3>
                   <p className="mb-0">All the generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
                 </div>
                 <div className="cs_iconbox cs_style_2">
                   <span className="cs_iconbox_icon cs_bg_1 cs_center cs_mb_18">
-                    <img src="assets1/img/icons/products.svg" alt="Product stack icon" />
+                    <img src={productsIcon} alt="Product stack icon" />
                   </span>
                   <h3 className="cs_fs_24 cs_semibold cs_mb_4">Connect your product</h3>
                   <p className="mb-0">All the generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
                 </div>
                 <div className="cs_iconbox cs_style_2">
                   <span className="cs_iconbox_icon cs_bg_2 cs_center cs_mb_18">
-                    <img src="assets1/img/icons/analytics.svg" alt="Analytics icon" />
+                    <img src={analyticsIcon} alt="Analytics icon" />
                   </span>
                   <h3 className="cs_fs_24 cs_semibold cs_mb_4">Track Analytics your account</h3>
                   <p className="mb-0">All the generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
@@ -374,7 +468,7 @@ export default function Home() {
           </div>
         </div>
         <div className="cs_star_shape_4 position-absolute">
-          <img src="assets1/img/star-shape.svg" alt="Star shape" />
+          <img src={starShape} alt="Star shape" />
         </div>
         <div className="cs_height_0 cs_height_lg_80"></div>
       </section>
@@ -385,16 +479,16 @@ export default function Home() {
             <div className="row cs_gap_y_50 position-relative z-1">
               <div className="col-lg-6">
                 <div className="cs_card_thumbnail position-relative">
-                  <img src="assets1/img/dashboard.png" alt="Dashboard image" />
+                  <img src={dashboardImg} alt="Dashboard image" />
                 </div>
               </div>
               <div className="col-lg-6">
                 <div className="cs_card_content">
                   <div className="cs_section_heading cs_style_1 cs_mb_27">
                     <div className="cs_section_subtitle cs_fs_18 cs_heading_color cs_mb_22">
-                      <img src="assets1/img/icons/star-1.svg" alt="Star icon" />
+                      <img src={star1} alt="Star icon" />
                       <span>Customizations & Analysis</span>
-                      <img src="assets1/img/icons/star-1.svg" alt="Star icon" />
+                      <img src={star1} alt="Star icon" />
                     </div>
                     <h2 className="cs_section_title cs_fs_48 cs_semibold wow fadeInLeft">We Make It Easy To Track All User Analytics</h2>
                     <p className="mb-0 cs_card_desc">All the generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
@@ -402,7 +496,7 @@ export default function Home() {
                   <div className="cs_iconbox_wrapper_1">
                     <div className="cs_iconbox cs_style_1 cs_type_1">
                       <span className="cs_iconbox_icon cs_center cs_accent_bg">
-                        <img src="assets1/img/icons/advanced-tracking.svg" alt="Advanced tracking icon" />
+                        <img src={advancedTrackingIcon} alt="Advanced tracking icon" />
                       </span>
                       <div className="cs_iconbox_info">
                         <h3 className="cs_fs_20 cs_semibold cs_mb_1">Advanced tracking</h3>
@@ -411,7 +505,7 @@ export default function Home() {
                     </div>
                     <div className="cs_iconbox cs_style_1 cs_type_1">
                       <span className="cs_iconbox_icon cs_center cs_bg_1">
-                        <img src="assets1/img/icons/in-depth.svg" alt="In-depth monitoring icon" />
+                        <img src={inDepthIcon} alt="In-depth monitoring icon" />
                       </span>
                       <div className="cs_iconbox_info">
                         <h3 className="cs_fs_20 cs_semibold cs_mb_1">In-depth monitoring</h3>
@@ -423,7 +517,7 @@ export default function Home() {
               </div>
             </div>
             <div className="cs_star_shape_5 position-absolute">
-              <img src="assets1/img/3d-shape-2.png" alt="Vector shape" />
+              <img src={shape3d2} alt="Vector shape" />
             </div>
           </div>
           <div className="cs_height_120 cs_height_lg_80"></div>
@@ -436,16 +530,16 @@ export default function Home() {
             <div className="row cs_gap_y_50 position-relative z-1">
               <div className="col-lg-6 order-lg-2">
                 <div className="cs_card_thumbnail">
-                  <img src="assets1/img/phone-img-2.png" alt="Phone image" />
+                  <img src={phoneImg2} alt="Phone image" />
                 </div>
               </div>
               <div className="col-lg-6 order-lg-1">
                 <div className="cs_card_content">
                   <div className="cs_section_heading cs_style_1 cs_mb_27">
                     <div className="cs_section_subtitle cs_fs_18 cs_white_color cs_mb_22">
-                      <img src="assets1/img/icons/star-1.svg" alt="Star icon" />
+                      <img src={star1} alt="Star icon" />
                       <span>Why Choose us</span>
-                      <img src="assets1/img/icons/star-1.svg" alt="Star icon" />
+                      <img src={star1} alt="Star icon" />
                     </div>
                     <h2 className="cs_section_title cs_fs_48 cs_semibold cs_white_color wow fadeInDown">Trusted Partner In Digital Growth & Innovation</h2>
                     <p className="mb-0 cs_card_desc cs_white_color">With over 10 years of experience, a diverse team of experts, and a proven track record, Relatix is your trusted partner in achieving digital excellence.</p>
@@ -484,9 +578,9 @@ export default function Home() {
         <div className="container">
           <div className="text-center cs_section_heading cs_style_1 cs_center_column cs_mb_60 position-relative z-1">
             <div className="cs_section_subtitle cs_fs_18 cs_heading_color cs_mb_22">
-              <img src="assets1/img/icons/star-1.svg" alt="Star icon" />
+              <img src={star1} alt="Star icon" />
               <span>Our Pricing</span>
-              <img src="assets1/img/icons/star-1.svg" alt="Star icon" />
+              <img src={star1} alt="Star icon" />
             </div>
             <h2 className="cs_section_title cs_fs_48 cs_semibold cs_mb_20 text-capitalize wow fadeInUp">Choose A Plan for more <br /> advanced business</h2>
             <div className="cs_center">
@@ -617,13 +711,13 @@ export default function Home() {
             </div>
           </div>
           <div className="cs_pricing_shape_3 position-absolute">
-            <img src="assets1/img/trash-group-2.svg" alt="Vector image" />
+            <img src={trashGroup2} alt="Vector image" />
           </div>
           <div className="cs_pricing_shape_4 position-absolute">
-            <img src="assets1/img/vector-8.svg" alt="Vector image" />
+            <img src={vector8} alt="Vector image" />
           </div>
           <div className="cs_pricing_shape_5 position-absolute">
-            <img src="assets1/img/vector-9.svg" alt="Vector image" />
+            <img src={vector9} alt="Vector image" />
           </div>
         </div>
         <div className="cs_height_120 cs_height_lg_80"></div>
@@ -672,10 +766,10 @@ export default function Home() {
           <div className="cs_card cs_style_1 cs_type_5">
             <div className="row cs_gap_y_30">
               <div className="col-lg-5 order-lg-2">
-                <a href="https://www.youtube.com/embed/HC-tgFdIcB0" aria-label="Click to play video" className="cs_video cs_style_1 cs_center cs_video_open cs_bg_filed cs_radius_15 position-relative" data-src="assets1/img/video-bg-1.jpg">
+                <a href="https://www.youtube.com/embed/HC-tgFdIcB0" aria-label="Click to play video" className="cs_video cs_style_1 cs_center cs_video_open cs_bg_filed cs_radius_15 position-relative" data-src={videoBg1}>
                   <span className="cs_player_btn cs_style_1 cs_center cs_radius_100 cs_theme_bg_3 cs_white_color position-relative"><i className="fa-solid fa-play"></i></span>
                   <div className="cs_vector_shape_5 position-absolute">
-                    <img src="assets1/img/vector-10.svg" alt="Vector shape" />
+                    <img src={vector10} alt="Vector shape" />
                   </div>
                 </a>
               </div>
@@ -683,9 +777,9 @@ export default function Home() {
                 <div className="cs_card_content">
                   <div className="cs_section_heading cs_style_1 cs_mb_20">
                     <div className="cs_section_subtitle cs_fs_18 cs_heading_color cs_mb_22">
-                      <img src="assets1/img/icons/star-1.svg" alt="Star icon" />
+                      <img src={star1} alt="Star icon" />
                       <span>Costumer Story</span>
-                      <img src="assets1/img/icons/star-1.svg" alt="Star icon" />
+                      <img src={star1} alt="Star icon" />
                     </div>
                     <h2 className="mb-0 cs_section_title cs_fs_48 cs_semibold text-capitalize wow fadeInDown">How a certain consumer used a product successfully</h2>
                   </div>
@@ -696,7 +790,7 @@ export default function Home() {
                       <span className="cs_btn_icon"><i className="fa-solid fa-arrow-right"></i></span>
                     </a>
                     <div className="cs_client_info_wrapper">
-                      <img src="assets1/img/customers-group-2.png" alt="Customers image" />
+                      <img src={customersGroup2} alt="Customers image" />
                       <div>
                         <h3 className="mb-0 cs_fs_18 cs_normal">Happy Costumer</h3>
                         <p className="mb-0"><span className="cs_theme_color_5"><i className="fa-solid fa-star"></i></span> 3.5(10k Review)</p>
@@ -722,7 +816,7 @@ export default function Home() {
                   <div className="cs_testimonial cs_style_2">
                     <div className="cs_testimonial_heading cs_mb_10">
                       <span className="cs_quote_icon cs_center cs_white_bg cs_radius_100">
-                        <img src="assets1/img/icons/qote.svg" alt="Quote icon" />
+                        <img src={quoteIcon} alt="Quote icon" />
                       </span>
                       <div className="cs_rating" data-rating="5">
                         <div className="cs_rating_percentage"></div>
@@ -731,7 +825,7 @@ export default function Home() {
                     <blockquote>This is why having reviews and client testimonials is so important for your business. So, in this article,  go over some client testimonial examples you should be aware of and how you can go about gathering those testimonials for yourself. This is why having reviews and client testimonials is so important for your business. So, in this article, we'll go over some client testimonial</blockquote>
                     <div className="cs_avatar cs_style_1">
                       <span className="cs_avatar_icon cs_center cs_radius_100">
-                        <img src="assets1/img/avatar-5.jpg" alt="Avatar" />
+                        <img src={avatar5} alt="Avatar" />
                       </span>
                       <div className="cs_avatar_info">
                         <h3 className="mb-0 cs_fs_20 cs_semibold">Juliana Rose</h3>
@@ -744,7 +838,7 @@ export default function Home() {
                   <div className="cs_testimonial cs_style_2">
                     <div className="cs_testimonial_heading cs_mb_10">
                       <span className="cs_quote_icon cs_center cs_white_bg cs_radius_100">
-                        <img src="assets1/img/icons/qote.svg" alt="Quote icon" />
+                        <img src={quoteIcon} alt="Quote icon" />
                       </span>
                       <div className="cs_rating" data-rating="5">
                         <div className="cs_rating_percentage"></div>
@@ -753,7 +847,7 @@ export default function Home() {
                     <blockquote>This is why having reviews and client testimonials is so important for your business. So, in this article,  go over some client testimonial examples you should be aware of and how you can go about gathering those testimonials for yourself. This is why having reviews and client testimonials is so important for your business. So, in this article, we'll go over some client testimonial</blockquote>
                     <div className="cs_avatar cs_style_1">
                       <span className="cs_avatar_icon cs_center cs_radius_100">
-                        <img src="assets1/img/avatar-6.jpg" alt="Avatar" />
+                        <img src={avatar6} alt="Avatar" />
                       </span>
                       <div className="cs_avatar_info">
                         <h3 className="mb-0 cs_fs_20 cs_semibold">Anjelina Rose</h3>
@@ -781,73 +875,73 @@ export default function Home() {
             <div className="cs_toolset_logos">
               <div className="text-center cs_iconbox cs_style_3 cs_center_column cs_white_bg cs_radius_16">
                 <span className="cs_iconbox_icon cs_mb_14">
-                  <img src="assets1/img/icons/slack.svg" alt="Slack icon" />
+                  <img src={slackIcon} alt="Slack icon" />
                 </span>
                 <p className="mb-0 cs_medium">Slack</p>
               </div>
               <div className="text-center cs_iconbox cs_style_3 cs_center_column cs_white_bg cs_radius_16">
                 <span className="cs_iconbox_icon cs_mb_14">
-                  <img src="assets1/img/icons/dropbox.svg" alt="Dropbox icon" />
+                  <img src={dropboxIcon} alt="Dropbox icon" />
                 </span>
                 <p className="mb-0 cs_medium">Dropbox</p>
               </div>
               <div className="text-center cs_iconbox cs_style_3 cs_center_column cs_white_bg cs_radius_16">
                 <span className="cs_iconbox_icon cs_mb_14">
-                  <img src="assets1/img/icons/linkedin.svg" alt="LinkedIn icon" />
+                  <img src={linkedinIcon} alt="LinkedIn icon" />
                 </span>
                 <p className="mb-0 cs_medium">LinkedIn</p>
               </div>
               <div className="text-center cs_iconbox cs_style_3 cs_center_column cs_white_bg cs_radius_16">
                 <span className="cs_iconbox_icon cs_mb_14">
-                  <img src="assets1/img/icons/hubspot.svg" alt="Hubspot icon" />
+                  <img src={hubspotIcon} alt="Hubspot icon" />
                 </span>
                 <p className="mb-0 cs_medium">Hubspot</p>
               </div>
               <div className="text-center cs_iconbox cs_style_3 cs_center_column cs_white_bg cs_radius_16">
                 <span className="cs_iconbox_icon cs_mb_14">
-                  <img src="assets1/img/icons/whatsapp.svg" alt="Whatsapp icon" />
+                  <img src={whatsappIcon} alt="Whatsapp icon" />
                 </span>
                 <p className="mb-0 cs_medium">Whatsapp</p>
               </div>
               <div className="text-center cs_iconbox cs_style_3 cs_center_column cs_white_bg cs_radius_16">
                 <span className="cs_iconbox_icon cs_mb_14">
-                  <img src="assets1/img/icons/discord.svg" alt="Discord icon" />
+                  <img src={discordIcon} alt="Discord icon" />
                 </span>
                 <p className="mb-0 cs_medium">Discord</p>
               </div>
               <div className="text-center cs_iconbox cs_style_3 cs_center_column cs_white_bg cs_radius_16">
                 <span className="cs_iconbox_icon cs_mb_14">
-                  <img src="assets1/img/icons/zoom.svg" alt="Zoom icon" />
+                  <img src={zoomIcon} alt="Zoom icon" />
                 </span>
                 <p className="mb-0 cs_medium">Zoom</p>
               </div>
               <div className="text-center cs_iconbox cs_style_3 cs_center_column cs_white_bg cs_radius_16">
                 <span className="cs_iconbox_icon cs_mb_14">
-                  <img src="assets1/img/icons/github.svg" alt="Github icon" />
+                  <img src={githubIcon} alt="Github icon" />
                 </span>
                 <p className="mb-0 cs_medium">Github</p>
               </div>
               <div className="text-center cs_iconbox cs_style_3 cs_center_column cs_white_bg cs_radius_16">
                 <span className="cs_iconbox_icon cs_mb_14">
-                  <img src="assets1/img/icons/mailchip.svg" alt="Mailchimp icon" />
+                  <img src={mailchimpIcon} alt="Mailchimp icon" />
                 </span>
                 <p className="mb-0 cs_medium">Mailchimp</p>
               </div>
               <div className="text-center cs_iconbox cs_style_3 cs_center_column cs_white_bg cs_radius_16">
                 <span className="cs_iconbox_icon cs_mb_14">
-                  <img src="assets1/img/icons/shopify.svg" alt="Shopify icon" />
+                  <img src={shopifyIcon} alt="Shopify icon" />
                 </span>
                 <p className="mb-0 cs_medium">Shopify</p>
               </div>
               <div className="text-center cs_iconbox cs_style_3 cs_center_column cs_white_bg cs_radius_16">
                 <span className="cs_iconbox_icon cs_mb_14">
-                  <img src="assets1/img/icons/googledrive.svg" alt="Google Drive icon" />
+                  <img src={googledriveIcon} alt="Google Drive icon" />
                 </span>
                 <p className="mb-0 cs_medium">Google Drive</p>
               </div>
               <div className="text-center cs_iconbox cs_style_3 cs_center_column cs_white_bg cs_radius_16">
                 <span className="cs_iconbox_icon cs_mb_14">
-                  <img src="assets1/img/icons/notion.svg" alt="Notion icon" />
+                  <img src={notionIcon} alt="Notion icon" />
                 </span>
                 <p className="mb-0 cs_medium">Notion</p>
               </div>
@@ -855,9 +949,9 @@ export default function Home() {
             <div className="text-center cs_toolset_text">
               <div className="cs_section_heading cs_style_1 cs_mb_20">
                 <div className="cs_section_subtitle cs_fs_18 cs_heading_color cs_mb_22">
-                  <img src="assets1/img/icons/star-1.svg" alt="Star icon" />
+                  <img src={star1} alt="Star icon" />
                   <span>Our Toolset</span>
-                  <img src="assets1/img/icons/star-1.svg" alt="Star icon" />
+                  <img src={star1} alt="Star icon" />
                 </div>
                 <h2 className="mb-0 cs_section_title cs_fs_48 cs_semibold text-capitalize wow fadeInUp">Technologies Behind Our Solutions.</h2>
               </div>
@@ -877,9 +971,9 @@ export default function Home() {
           <div className="cs_section_heading cs_style_1 cs_type_1 cs_mb_60">
             <div className="cs_section_heading_left">
               <div className="cs_section_subtitle cs_fs_18 cs_heading_color cs_mb_22">
-                <img src="assets1/img/icons/star-1.svg" alt="Star icon" />
+                <img src={star1} alt="Star icon" />
                 <span>Blog & Articles</span>
-                <img src="assets1/img/icons/star-1.svg" alt="Star icon" />
+                <img src={star1} alt="Star icon" />
               </div>
               <h2 className="mb-0 cs_section_title cs_fs_48 cs_semibold wow fadeInDown">News & Blog Insight Insights</h2>
             </div>
@@ -899,7 +993,7 @@ export default function Home() {
               <div className="cs_slide">
                 <article className="cs_post cs_style_1 cs_type_1 cs_radius_20">
                   <a href="blog-details.html" aria-label="Reading details post link" className="overflow-hidden cs_post_thumbnail cs_mb_15 position-relative">
-                    <img src="assets1/img/post-img-4.jpg" alt="Post image" />
+                    <img src={postImg4} alt="Post image" />
                     <span className="cs_post_category cs_heading_bg cs_fs_14 cs_medium cs_white_color position-absolute">Development</span>
                   </a>
                   <div className="cs_post_content">
@@ -924,7 +1018,7 @@ export default function Home() {
               <div className="cs_slide">
                 <article className="cs_post cs_style_1 cs_type_1 cs_radius_20">
                   <a href="blog-details.html" aria-label="Reading details post link" className="overflow-hidden cs_post_thumbnail cs_mb_15 position-relative">
-                    <img src="assets1/img/post-img-5.jpg" alt="Post image" />
+                    <img src={postImg5} alt="Post image" />
                     <span className="cs_post_category cs_fs_14 cs_medium cs_heading_bg cs_white_color position-absolute">Technology</span>
                   </a>
                   <div className="cs_post_content">
@@ -949,7 +1043,7 @@ export default function Home() {
               <div className="cs_slide">
                 <article className="cs_post cs_style_1 cs_type_1 cs_radius_20">
                   <a href="blog-details.html" aria-label="Reading details post link" className="overflow-hidden cs_post_thumbnail cs_mb_15 position-relative">
-                    <img src="assets1/img/post-img-6.jpg" alt="Post image" />
+                    <img src={postImg6} alt="Post image" />
                     <span className="cs_post_category cs_heading_bg cs_fs_14 cs_medium cs_white_color position-absolute">Marketing</span>
                   </a>
                   <div className="cs_post_content">
@@ -974,7 +1068,7 @@ export default function Home() {
               <div className="cs_slide">
                 <article className="cs_post cs_style_1 cs_type_1 cs_radius_20">
                   <a href="blog-details.html" aria-label="Reading details post link" className="overflow-hidden cs_post_thumbnail cs_mb_15 position-relative">
-                    <img src="assets1/img/post-img-1.jpg" alt="Post image" />
+                    <img src={postImg1} alt="Post image" />
                     <span className="cs_post_category cs_heading_bg cs_fs_14 cs_medium cs_white_color position-absolute">Development</span>
                   </a>
                   <div className="cs_post_content">
@@ -1001,7 +1095,7 @@ export default function Home() {
         </div>
         <div className="cs_height_120 cs_height_lg_80"></div>
       </section>
-      <footer className="cs_footer cs_style_1 cs_type_1 cs_accent_bg cs_bg_filed cs_white_color" data-src="assets1/img/footer-bg-2.svg">
+      <footer className="cs_footer cs_style_1 cs_type_1 cs_accent_bg cs_bg_filed cs_white_color" data-src={footerBg2}>
         <div className="cs_height_130 cs_height_lg_80"></div>
         <div className="container">
           <div className="cs_footer_top position-relative">
@@ -1027,7 +1121,7 @@ export default function Home() {
             <div className="cs_footer_widget_wrapper">
               <div className="cs_footer_widget cs_text_widget">
                 <div className="cs_brand cs_mb_32">
-                  <img src="assets1/img/logo-2.svg" alt="Logo" />
+                  <img src={logo2} alt="Logo" />
                 </div>
                 <p className="cs_mb_32">It involves the use of CRM software and strategies to effectively manage customer relationships, improve customer satisfaction, and drive business growth.</p>
                 <div className="cs_social_links cs_style_1 cs_heading_color">

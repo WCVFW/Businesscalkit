@@ -3,6 +3,12 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import "./styles/globals.css";
+import "./assets1/css/bootstrap.min.css";
+import "./assets1/css/fontawesome.min.css";
+import "./assets1/css/slick.min.css";
+import "./assets1/css/animate.css";
+import "./assets1/css/odometer.css";
+import "./assets1/css/style.css";
 
 // Enable mocked API only when explicitly toggled
 if (import.meta.env.VITE_USE_MOCK === "true") {

@@ -30,6 +30,7 @@ import {
 
 /* --------------------------------------------------------------------------
    I. Main Header Component
+   - Now correctly integrates the complex dropdown menu via HeaderNav.
 ---------------------------------------------------------------------------*/
 export default function Header({ user, logout }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -37,39 +38,42 @@ export default function Header({ user, logout }) {
 
   return (
     <>
-      {/* ====== Top Header ====== */}
-      <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 backdrop-blur-sm">
-        <div className="flex items-center justify-between h-16 px-4 mx-auto max-w-7xl md:px-8">
+      {/* ====== Main Header Wrapper (for sticky positioning and gradient background) ====== */}
+      <header className="sticky top-0 z-50 w-full bg-gradient-to-r from-green-100 via-purple-100 to-pink-100 py-6 px-4 md:px-8">
+        {/* The inner container provides the pill shape and backdrop effect */}
+        <div className="flex items-center justify-between mx-auto max-w-6xl px-8 py-4 bg-white/40 backdrop-blur-sm rounded-full">
+          
+          {/* Logo - FIX: Reinstated Logo SVG and text */}
           <Link
             to="/"
-            className="text-xl md:text-2xl font-bold text-gray-900 hover:text-[#003366] transition-colors"
+            className="flex items-center gap-2 text-2xl font-bold text-gray-900 hover:text-purple-600 transition-colors min-w-fit"
             onClick={() => setMenuOpen(false)}
           >
-            <span className="text-[#003366]"></span>Logo{" "}
-            {/* <span className="text-[#003366]">F</span>inancial{" "}
-            <span className="text-[#003366]">S</span>ervices */}
+            {/* SaasoX Logo SVG */}
+            <svg className="w-8 h-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="8" cy="8" r="4" fill="#9333ea" opacity="0.8" />
+              <circle cx="16" cy="8" r="4" fill="#a855f7" />
+              <circle cx="8" cy="16" r="4" fill="#a855f7" />
+              <circle cx="16" cy="16" r="4" fill="#9333ea" opacity="0.6" />
+            </svg>
+            <span>**SaasoX**</span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="items-center hidden space-x-8 lg:flex">
+          {/* Desktop Navigation - INTEGRATED HeaderNav */}
+          <div className="items-center hidden lg:flex">
             <HeaderNav currentPath={location.pathname} />
           </div>
 
-          {/* Right Auth Buttons (Desktop) */}
+          {/* Right Section (Desktop) */}
           <div className="items-center hidden space-x-4 lg:flex">
             {user ? (
               <div className="relative">
                 <AccountMenu user={user} logout={logout} />
               </div>
             ) : (
-              <>
-                <Link to="/login" className="text-[#003366] font-medium hover:text-[#001f3e] transition-colors">
-                  Login
-                </Link>
-                <Link to="/signup" className="bg-black text-white px-4 py-2 rounded-md hover:bg-[#001f3e] transition-colors">
-                  Sign Up
-                </Link>
-              </>
+              <Link to="/signup" className="bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition-colors font-semibold text-sm flex items-center gap-2">
+                GET STARTED <span>→</span>
+              </Link>
             )}
           </div>
 
@@ -87,40 +91,43 @@ export default function Header({ user, logout }) {
       {/* Mobile Menu Overlay */}
       <div
         className={cn(
-          "fixed inset-0 z-40 flex flex-col bg-white p-6 transition-transform duration-300 ease-in-out lg:hidden overflow-y-auto",
+          "fixed inset-0 z-40 flex flex-col bg-gradient-to-b from-green-100 via-purple-100 to-pink-100 p-6 transition-transform duration-300 ease-in-out lg:hidden overflow-y-auto",
           menuOpen ? "translate-x-0" : "-translate-x-full"
         )}
         style={{ pointerEvents: menuOpen ? "auto" : "none" }}
         aria-hidden={!menuOpen}
       >
-        <HeaderNav currentPath={location.pathname} setMenuOpen={setMenuOpen} />
+        {/* Mobile Navigation - INTEGRATED HeaderNav */}
+        <div className="flex flex-col space-y-4 pt-8 pb-4">
+            <HeaderNav currentPath={location.pathname} setMenuOpen={setMenuOpen} isMobile={true} />
+        </div>
 
-        <div className="pt-6 mt-6 border-t">
+
+        <div className="pt-6 mt-6 border-t border-gray-300">
           {user ? (
             <>
-              <Link to={user?.role === 'ADMIN' ? '/dashboard/admin' : user?.role === 'EMPLOYEE' ? '/dashboard/employee' : '/dashboard/user'} onClick={() => setMenuOpen(false)} className="block w-full text-center bg-white text-[#003366] border border-gray-200 py-2 rounded-md hover:bg-gray-50 transition-colors">
+              <Link to={user?.role === 'ADMIN' ? '/dashboard/admin' : user?.role === 'EMPLOYEE' ? '/dashboard/employee' : '/dashboard/user'} onClick={() => setMenuOpen(false)} className="block w-full text-center bg-white text-purple-600 border border-gray-300 py-2.5 rounded-lg hover:bg-gray-50 transition-colors font-medium">
                 Dashboard
               </Link>
-              <Link to={user?.role === 'ADMIN' ? '/dashboard/admin/profile' : user?.role === 'EMPLOYEE' ? '/dashboard/employee/profile' : '/dashboard/user/profile'} onClick={() => setMenuOpen(false)} className="mt-3 block w-full text-center bg-white text-[#003366] border border-gray-200 py-2 rounded-md hover:bg-gray-50 transition-colors">
+              <Link to={user?.role === 'ADMIN' ? '/dashboard/admin/profile' : user?.role === 'EMPLOYEE' ? '/dashboard/employee/profile' : '/dashboard/user/profile'} onClick={() => setMenuOpen(false)} className="mt-3 block w-full text-center bg-white text-purple-600 border border-gray-300 py-2.5 rounded-lg hover:bg-gray-50 transition-colors font-medium">
                 My Account
               </Link>
               <button
                 onClick={() => {
                   setMenuOpen(false);
                   logout();
-                  // Page refresh happens in logout function
                 }}
-                className="mt-3 w-full bg-[#003366] text-white py-2 rounded-md hover:bg-[#001f3e] transition-colors"
+                className="mt-3 w-full bg-purple-600 text-white py-2.5 rounded-lg hover:bg-purple-700 transition-colors font-medium"
               >
                 Logout
               </button>
             </>
           ) : (
             <>
-              <Link to="/login" onClick={() => setMenuOpen(false)} className="block w-full text-center bg-[#003366] text-white py-2 rounded-md hover:bg-[#001f3e] transition-colors">
+              <Link to="/login" onClick={() => setMenuOpen(false)} className="block w-full text-center bg-purple-600 text-white py-2.5 rounded-lg hover:bg-purple-700 transition-colors font-medium">
                 Login
               </Link>
-              <Link to="/signup" onClick={() => setMenuOpen(false)} className="block w-full text-center mt-3 bg-gray-100 text-[#003366] py-2 rounded-md hover:bg-gray-200 transition-colors">
+              <Link to="/signup" onClick={() => setMenuOpen(false)} className="block w-full text-center mt-3 bg-gray-100 text-purple-600 py-2.5 rounded-lg hover:bg-gray-200 transition-colors font-medium">
                 Sign Up
               </Link>
             </>
@@ -132,7 +139,7 @@ export default function Header({ user, logout }) {
 }
 
 /* --------------------------------------------------------------------------
-   Account Menu (user dropdown)
+   Account Menu (user dropdown) - No Change
 ---------------------------------------------------------------------------*/
 function AccountMenu({ user, logout }) {
   const [open, setOpen] = useState(false);
@@ -152,15 +159,15 @@ function AccountMenu({ user, logout }) {
 
   return (
     <div className="relative inline-block text-left">
-      <button onClick={() => setOpen(!open)} className="flex items-center gap-2 px-3 py-1 rounded hover:bg-gray-100">
-        <User className="w-5 h-5 text-[#003366]" />
-        <span className="hidden md:inline text-[#003366]">{user?.fullName || user?.name || user?.email}</span>
+      <button onClick={() => setOpen(!open)} className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-100 transition-colors">
+        <User className="w-5 h-5 text-purple-600" />
+        <span className="hidden md:inline text-gray-700 font-medium">{user?.fullName || user?.name || user?.email}</span>
       </button>
       {open && (
-        <div className="absolute right-0 z-50 py-1 mt-2 bg-white border rounded shadow-md w-44">
-          <button onClick={goToDashboard} className="w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50">Dashboard</button>
-          <Link to={user?.role === 'ADMIN' ? '/dashboard/admin/profile' : user?.role === 'EMPLOYEE' ? '/dashboard/employee/profile' : '/dashboard/user/profile'} onClick={() => setOpen(false)} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">My Account</Link>
-          <button onClick={handleLogout} className="w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50">Logout</button>
+        <div className="absolute right-0 z-50 py-2 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg w-44">
+          <button onClick={goToDashboard} className="w-full px-4 py-2.5 text-sm text-left text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors">Dashboard</button>
+          <Link to={user?.role === 'ADMIN' ? '/dashboard/admin/profile' : user?.role === 'EMPLOYEE' ? '/dashboard/employee/profile' : '/dashboard/user/profile'} onClick={() => setOpen(false)} className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors">My Account</Link>
+          <button onClick={handleLogout} className="w-full px-4 py-2.5 text-sm text-left text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors">Logout</button>
         </div>
       )}
     </div>
@@ -169,8 +176,9 @@ function AccountMenu({ user, logout }) {
 
 /* --------------------------------------------------------------------------
    II. Navigation Section
+   - Includes simple links (Home, About Us, Contact Us) and complex dropdowns.
 ---------------------------------------------------------------------------*/
-function HeaderNav({ currentPath, setMenuOpen }) {
+function HeaderNav({ currentPath, setMenuOpen, isMobile = false }) {
   const handleLinkClick = () => setMenuOpen && setMenuOpen(false);
 
   // Define icons object
@@ -188,12 +196,31 @@ function HeaderNav({ currentPath, setMenuOpen }) {
   };
 
   return (
-    <NavigationMenu orientation="vertical" className="w-full lg:orientation-horizontal">
-      <NavigationMenuList className="flex flex-col space-y-2 lg:flex-row lg:space-y-0 lg:space-x-6">
+    // Conditional styling for vertical orientation on mobile
+    <NavigationMenu orientation={isMobile ? "vertical" : "horizontal"} className="w-full lg:w-auto">
+      <NavigationMenuList className="flex flex-col space-y-2 lg:flex-row lg:space-y-0 lg:space-x-4">
+        
+        {/* ===================== Home (Simple Link) ===================== */}
+        <NavigationMenuItem className="w-full lg:w-auto">
+          <NavigationMenuLink asChild>
+            <Link to="/" onClick={handleLinkClick} className={cn("px-4 py-2.5 text-sm font-medium transition-colors rounded-md hover:bg-gray-100 hover:text-purple-600", currentPath === "/" && "font-semibold text-purple-600 bg-gray-50")}>
+              Home
+            </Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
 
-        {/* ===================== Consult an Expert ===================== */}
+        {/* ===================== About Us (Simple Link) ===================== */}
+        <NavigationMenuItem className="w-full lg:w-auto">
+          <NavigationMenuLink asChild>
+            <Link to="/about" onClick={handleLinkClick} className={cn("px-4 py-2.5 text-sm font-medium transition-colors rounded-md hover:bg-gray-100 hover:text-purple-600", currentPath === "/about" && "font-semibold text-purple-600 bg-gray-50")}>
+              About Us
+            </Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        
+        {/* ===================== Services (Mapped from Consult an Expert) ===================== */}
         <NavItem
-          title="Consult an Expert"
+          title="Services" // Matches the design image navigation
           menuWidth="lg:w-[280px]"
           links={[
             ["Talk to a Lawyer", "/ConsultanExpert/talkToLawyer", "FileText"],
@@ -204,11 +231,12 @@ function HeaderNav({ currentPath, setMenuOpen }) {
           currentPath={currentPath}
           icons={icons}
           handleLinkClick={handleLinkClick}
+          isMobile={isMobile}
         />
 
-        {/* ===================== Business Setup (Wide Menu, force-centered) ===================== */}
+        {/* ===================== Pages (Mapped from Business Setup) ===================== */}
         <NavItem
-          title="Business Setup"
+          title="Pages" // Matches the design image navigation
           menuWidth="lg:w-[900px]"
           gridCols="lg:grid-cols-3"
           linksGroups={[
@@ -253,65 +281,60 @@ function HeaderNav({ currentPath, setMenuOpen }) {
                 ["Customs Clearance", "/Licenses/customs-clearance", "Award"],
               ],
             }
-
           ]}
           currentPath={currentPath}
           icons={icons}
           handleLinkClick={handleLinkClick}
-          // The fixed center positioning for wide menus is now handled inside NavItem
           fixedWidth={900}
+          isMobile={isMobile}
         />
 
-        {/* ===================== Fundraising ===================== */}
+        {/* ===================== Blog (Mapped from Fundraising + NGO) ===================== */}
         <NavItem
-          title="Fundraising"
-          menuWidth="lg:w-[260px]"
-          links={[
-            ["Fundraising", "/Fundraising", "DollarSign"], ["Pitch Deck", "/Fundraising/pitch-deck", "BarChart"],
-            ["Business Loan", "/Fundraising/business-loan", "DollarSign"], ["DPR Service", "/Fundraising/dpr", "FileText"],
-          ]}
-          currentPath={currentPath}
-          icons={icons}
-          handleLinkClick={handleLinkClick}
-        />
-
-        {/* ===================== NGO (Menu on the far right) ===================== */}
-        <NavItem
-          title="NGO"
+          title="Blog" // Matches the design image navigation
           menuWidth="lg:w-[700px]"
           gridCols="lg:grid-cols-2"
           linksGroups={[
             {
-              title: "NGO Registration",
+              title: "Fundraising & Loans",
               links: [
-                ["NGO", "/NGO", "Heart"], ["Section 8 Company", "/NGO/section-8", "Heart"],
-                ["Trust Registration", "/NGO/trust", "Clipboard"], ["Society Registration", "/NGO/society", "Clipboard"],
-              ],
+                ["Fundraising", "/Fundraising", "DollarSign"], ["Pitch Deck", "/Fundraising/pitch-deck", "BarChart"],
+                ["Business Loan", "/Fundraising/business-loan", "DollarSign"], ["DPR Service", "/Fundraising/dpr", "FileText"],
+              ]
             },
             {
-              title: "NGO Compliance",
+              title: "NGO & Compliance",
               links: [
-                ["NGO Compliance", "/NGO/compliance", "FileText"],
-                ["Section 8 Compliance", "/NGO/section8", "FileText"],
-                ["CSR-1 Filing", "/NGO/csr1", "FileText"],
-                ["Sec.80G & Sec.12A", "/NGO/80g-12a", "FileText"],
-                ["Darpan Registration", "/NGO/darpan", "Award"],
+                ["NGO Registration", "/NGO", "Heart"], ["Section 8 Company", "/NGO/section-8", "Heart"],
+                ["Trust Registration", "/NGO/trust", "Clipboard"], ["Society Registration", "/NGO/society", "Clipboard"],
                 ["FCRA Registration", "/NGO/fcra", "Award"],
-              ],
+                ["Sec.80G & Sec.12A", "/NGO/80g-12a", "FileText"],
+              ]
             },
           ]}
           currentPath={currentPath}
           icons={icons}
           handleLinkClick={handleLinkClick}
           fixedWidth={700} // Pass the expected desktop width
+          isMobile={isMobile}
         />
+        
+        {/* ===================== Contact Us (Simple Link) ===================== */}
+        <NavigationMenuItem className="w-full lg:w-auto">
+          <NavigationMenuLink asChild>
+            <Link to="/contact" onClick={handleLinkClick} className={cn("px-4 py-2.5 text-sm font-medium transition-colors rounded-md hover:bg-gray-100 hover:text-purple-600", currentPath === "/contact" && "font-semibold text-purple-600 bg-gray-50")}>
+              Contact Us
+            </Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+
       </NavigationMenuList>
     </NavigationMenu>
   );
 }
 
 /* --------------------------------------------------------------------------
-   III. Dropdown Item Components (with Responsive Positioning)
+   III. Dropdown Item Components (with Responsive Positioning) - No Change
 ---------------------------------------------------------------------------*/
 function NavItem({
   title,
@@ -324,17 +347,16 @@ function NavItem({
   icons,
   handleLinkClick,
   fixedWidth = 300, // Default expected desktop width in pixels
+  isMobile = false,
 }) {
   const itemRef = useRef(null);
-  // State to hold the dynamic positioning classes (lg:left-0 or lg:right-0)
   const [positionClass, setPositionClass] = useState("lg:left-0 lg:translate-x-0");
 
-  // Hook to calculate position when the component mounts or the window resizes
   useEffect(() => {
     const handleResize = () => {
-      // Only apply this logic on screens larger than 'lg' (1024px)
+      // Logic is only for large screens (desktop positioning)
       if (window.innerWidth < 1024) {
-        setPositionClass(""); // Reset positioning for mobile
+        setPositionClass(""); 
         return;
       }
 
@@ -342,47 +364,52 @@ function NavItem({
         const rect = itemRef.current.getBoundingClientRect();
         const viewportWidth = window.innerWidth;
         const DROPDOWN_WIDTH = fixedWidth;
-        const PADDING = 20; // Extra padding margin
+        const PADDING = 20;
+
+        // Special handling for the centered "Pages" menu (Original "Business Setup")
+        const isCentered = title === "Pages"; 
+        if (isCentered && fixedWidth === 900) {
+          setPositionClass("lg:left-1/2 lg:-translate-x-1/2");
+          return;
+        }
 
         // Check if the dropdown overflows the right edge
         if (rect.left + DROPDOWN_WIDTH + PADDING > viewportWidth) {
-          // It overflows, so pin it to the right edge of the *trigger*
           setPositionClass("lg:right-0 lg:left-auto");
         } else {
-          // Fits normally, so pin it to the left edge of the *trigger*
           setPositionClass("lg:left-0 lg:right-auto");
         }
       }
     };
 
-    // Run once on mount
     handleResize();
-
-    // Listen for resize events
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [fixedWidth]);
+  }, [fixedWidth, title]);
 
-  // Special handling for the centered "Business Setup" menu
-  const isCentered = title === "Business Setup";
-  const finalPositionClass = isCentered
-    ? "lg:left-1/2 lg:-translate-x-1/2" // Fixed center positioning
-    : positionClass; // Dynamic left/right positioning
+  const finalPositionClass = positionClass; 
 
   return (
-    // Attach the ref to the list item
     <NavigationMenuItem ref={itemRef} className="w-full lg:w-auto lg:relative">
-      <NavigationMenuTrigger className="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-gray-600 transition-colors rounded-md hover:bg-gray-100 hover:text-gray-900">
+      <NavigationMenuTrigger
+        className={cn(
+            "flex items-center justify-between w-full px-4 py-2.5 text-sm font-medium transition-colors rounded-md hover:bg-gray-100 hover:text-purple-600",
+            // Check if any link in the dropdown is active to apply active state to the trigger
+            (links?.some(([_, href]) => currentPath === href) || linksGroups?.some(group => group.links.some(([_, href]) => currentPath === href))) && "font-semibold text-purple-600 bg-gray-50"
+        )}
+      >
         <div className="flex items-center">
           {icon && <span className="mr-2">{icon}</span>}
           {title}
+          {/* Add a plus icon/text for visual cue in the navigation bar */}
+          <span className="ml-1 text-xs font-normal">+</span>
         </div>
       </NavigationMenuTrigger>
 
       <NavigationMenuContent className={cn(
-        "p-4 bg-white border border-gray-100 shadow-lg rounded-md", // Base styles
-        "lg:absolute lg:top-full lg:mt-2 lg:block", // Desktop absolute positioning
-        "w-full h-auto mt-2", // Mobile/small screen styles
+        "p-6 bg-white border border-gray-100 shadow-xl rounded-lg", 
+        "lg:absolute lg:top-full lg:mt-3 lg:block", 
+        "w-full h-auto mt-2", 
         menuWidth,
         gridCols,
         finalPositionClass // Dynamic (or fixed-center) positioning
@@ -413,7 +440,7 @@ function NavItem({
 }
 
 /* --------------------------------------------------------------------------
-   IV. Menu Group (Sub-List) Component
+   IV. Menu Group (Sub-List) Component - No Change
 ---------------------------------------------------------------------------*/
 function MenuGroup({
   title,
@@ -424,9 +451,9 @@ function MenuGroup({
 }) {
   return (
     <div>
-      <p className="mb-2 font-sans text-sm font-semibold text-gray-900">{title}</p>
+      <p className="mb-3 font-sans text-sm font-bold text-gray-900">{title}</p>
       <ul
-        className="space-y-1 overflow-y-auto"
+        className="space-y-1.5 overflow-y-auto"
         // Limits height and enables vertical scrolling (as requested)
         style={{ maxHeight: "60vh" }}
       >
@@ -437,12 +464,12 @@ function MenuGroup({
                 to={href}
                 onClick={handleLinkClick} // Closes mobile menu
                 className={cn(
-                  "flex items-center rounded-md px-2 py-1 text-gray-600 text-sm transition-colors hover:bg-gray-100 hover:text-gray-900",
-                  currentPath === href && "bg-gray-100 font-medium text-gray-900"
+                  "flex items-center rounded-md px-3 py-2 text-gray-600 text-sm transition-colors hover:bg-purple-50 hover:text-purple-700",
+                  currentPath === href && "bg-purple-50 font-medium text-purple-700"
                 )}
               >
                 {/* Look up icon JSX using the string name */}
-                {iconName && icons[iconName] && <span className="mr-2">{icons[iconName]}</span>}
+                {iconName && icons[iconName] && <span className="mr-2 text-purple-600">{icons[iconName]}</span>}
                 {label}
               </Link>
             </NavigationMenuLink>

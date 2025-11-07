@@ -35,4 +35,15 @@ export default defineConfig({
       },
     },
   },
+
+  // ✅ Added: Ignore missing sourcemap warnings like bootstrap.min.css.map
+  build: {
+    sourcemap: true,
+  },
+  css: {
+    devSourcemap: false, // disable CSS sourcemap warnings
+  },
+  optimizeDeps: {
+    exclude: ['bootstrap'], // optional – prevents extra processing
+  },
 });
